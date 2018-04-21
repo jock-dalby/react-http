@@ -16,8 +16,8 @@ class FullPost extends Component {
         }
     }
     render () {
-        let post = <p style={{ textAlign: 'center' }}>Please select a Post!</p>;
-        if ( this.props.id && this.state.loadedPost ) {
+        let post = <p style={{ textAlign: 'center' }}>{this.props.id ? 'loading...' : 'Please select a Post!'}</p>;
+        if ( this.state.loadedPost ) {
             post = (
                 <div className="FullPost">
                     <h1>{ this.state.loadedPost.title }Title</h1>
