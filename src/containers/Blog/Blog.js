@@ -9,7 +9,8 @@ import './Blog.css';
 class Blog extends Component {
     state = {
         posts: [],
-        selectedPost: null
+        selectedPost: null,
+        error: false
     }
 
     componentDidMount() {
@@ -19,9 +20,11 @@ class Blog extends Component {
                     {...post, author: 'Jock'}
                 ));
                 this.setState({
-                    posts
-                })
-            });
+                    posts,
+                    error: false
+                });
+            })
+            .catch(err => this.setState({error: true}));
     }
 
     postSelected(id) {
@@ -31,12 +34,14 @@ class Blog extends Component {
     }
 
     render () {
-
-        const posts = this.state.posts.map(
-            post => <Post key={post.id}
-                        title={post.title}
-                        author={post.author}
-                        onClicked={ () => this.postSelected(post.id)}/>);
+        let posts = <p style={{ textAlign: 'center' }}>Something went wrong</p>
+        if (!this.state.error) {
+            posts = this.state.posts.map(
+                post => <Post key={post.id}
+                            title={post.title}
+                            author={post.author}
+                            onClicked={ () => this.postSelected(post.id)}/>);
+        }
 
         return (
             <div>
