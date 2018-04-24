@@ -6,7 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
 // This is global and will catch all requests from all components
-axios.interceptors.request.use(requestConfig => {
+const requestInterceptor = axios.interceptors.request.use(requestConfig => {
   console.log('axios', requestConfig);
   // Can edit the requestConfig with headers/ keys etc.
 
@@ -19,7 +19,11 @@ axios.interceptors.request.use(requestConfig => {
   return Promise.reject(error);
 })
 
-axios.interceptors.response.use(response => {
+// NOTE: To remove interceptor we call
+// axios.interceptors.request.eject(requestInterceptor); and
+// axios.interceptors.request.eject(responseInterceptor);
+
+const responseInterceptor = axios.interceptors.response.use(response => {
   console.log('axios', response);
   // Can view / edit the response
 
