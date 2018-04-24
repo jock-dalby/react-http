@@ -5,6 +5,14 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
+// GLOBAL SETTINGS FOR AXIOUS HTTP REQUESTS
+
+// Set baseUrl for all requests
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
+// Set auth token for all requests
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN';
+// Set content type in headers of posts requests
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 // This is global and will catch all requests from all components
 const requestInterceptor = axios.interceptors.request.use(requestConfig => {
   console.log('axios', requestConfig);
