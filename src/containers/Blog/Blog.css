@@ -19,5 +19,10 @@
 
 .Blog a {
     text-decoration: none;
-    color: balck;
+    color: black;
+}
+
+.Blog a:hover,
+.Blog a:active {
+    color: #fa923f;
 }
