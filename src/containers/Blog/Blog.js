@@ -17,7 +17,11 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Route path="/" exact render={() => <Posts/>}/>
+                {/*
+                    can write jsx code inside of render attribute => <Route path="/" exact render={() => <Posts/>}/>
+                    or can pass in whole components to the component attribute.
+                */}
+                <Route path="/" exact component={Posts}/>
             </div>
         );
     }
