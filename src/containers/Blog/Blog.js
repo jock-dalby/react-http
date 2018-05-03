@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Posts from '../Posts/Posts';
+import NewPost from '../NewPost/NewPost';
 import { Route } from 'react-router-dom';
 import './Blog.css';
 
@@ -17,11 +18,8 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                {/*
-                    can write jsx code inside of render attribute => <Route path="/" exact render={() => <Posts/>}/>
-                    or can pass in whole components to the component attribute.
-                */}
-                <Route path="/" exact component={Posts}/>
+                <Route path="/" exact render={() => <Posts/>}/>
+                <Route path="/new-post" exact component={NewPost}/>
             </div>
         );
     }
