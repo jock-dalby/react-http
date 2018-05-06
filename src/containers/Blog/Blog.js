@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Posts from '../Posts/Posts';
 import NewPost from '../NewPost/NewPost';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import './Blog.css';
 
 class Blog extends Component {
@@ -20,9 +20,14 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            {/*Using Link instead of <a> prevents the default browser behaviour of sending off a new request.*/}
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to={newPostRoute}>New Post</Link></li>
+                            {/*
+                                Using NavLink instead of <a> prevents the default browser behaviour of sending off a new request.
+                                'NavLink' also has the 'active' class added to it when the path is active, whereas the 'Link' component
+                                does not. The 'active' class can be overridden to use a different class name using the
+                                activeClassName prop.
+                            */}
+                            <li><NavLink to="/" exact>Home</NavLink></li>
+                            <li><NavLink to={newPostRoute}>New Post</NavLink></li>
                         </ul>
                     </nav>
                 </header>
