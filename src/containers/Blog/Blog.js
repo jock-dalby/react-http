@@ -24,9 +24,10 @@ class Blog extends Component {
                                 Using NavLink instead of <a> prevents the default browser behaviour of sending off a new request.
                                 'NavLink' also has the 'active' class added to it when the path is active, whereas the 'Link' component
                                 does not. The 'active' class can be overridden to use a different class name using the
-                                activeClassName prop.
+                                activeClassName prop. There is also the activeStyle prop for passing in inline styles for
+                                active routers e.g. activeStyle={{ color: 'pink' }}
                             */}
-                            <li><NavLink to="/" exact>Home</NavLink></li>
+                            <li><NavLink to="/" exact activeStyle={{ textDecoration: 'underline' }}>Home</NavLink></li>
                             <li><NavLink to={newPostRoute}>New Post</NavLink></li>
                         </ul>
                     </nav>
