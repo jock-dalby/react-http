@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import instance from '../../axios';
 import Post from '../../components/Post/Post';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './Posts.css';
 
 class Posts extends Component {
@@ -26,9 +26,7 @@ class Posts extends Component {
   }
 
   postSelected(id) {
-    this.setState({
-      selectedPost: id
-    });
+    this.props.history.push({pathname: '/' + id});
   }
 
   render() {
@@ -36,10 +34,9 @@ class Posts extends Component {
     let posts = <p style={{ textAlign: 'center' }}>Something went wrong</p>
     if (!this.state.error) {
       posts = this.state.posts.map(
-        post => <Link to={"/" + post.id} key={post.id}>
-        <Post title={post.title}
+        post => <Post title={post.title}
           author={post.author}
-          onClicked={() => this.postSelected(post.id)} /></Link>
+          onClicked={() => this.postSelected(post.id)} />
         );
     }
     return (
@@ -50,4 +47,4 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+export default withRouter(Posts);
