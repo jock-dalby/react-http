@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Posts from '../Posts/Posts';
 import NewPost from '../NewPost/NewPost';
 import FullPost from '../FullPost/FullPost';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 import './Blog.css';
 
 class Blog extends Component {
@@ -33,9 +33,18 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Route path="/" exact render={() => <Posts/>}/>
-                <Route path="/new-post" exact component={NewPost}/>
-                <Route path="/:id" exact component={FullPost}/>
+                {/*
+                * Using Switch means that rwhen eact-router-dom matches a given path with a route it
+                * will stop analusing any further routes. Only one route will ever be rendered. This
+                * is useful becuase otherwise here /new-post would render /new-post route and /:id
+                * route because the router could think new-post is an id. If we change the order of /new-post
+                * and /:id then we will never be able to reach the /new-post route.
+                */}
+                <Switch>
+                    <Route path="/" exact render={() => <Posts/>}/>
+                    <Route path="/new-post" exact component={NewPost}/>
+                    <Route path="/:id" exact component={FullPost}/>
+                </Switch>
             </div>
         );
     }
