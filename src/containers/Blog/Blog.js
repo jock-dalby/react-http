@@ -28,7 +28,7 @@ class Blog extends Component {
                                 activeClassName prop. There is also the activeStyle prop for passing in inline styles for
                                 active routers e.g. activeStyle={{ color: 'pink' }}
                             */}
-                            <li><NavLink to="/" exact activeStyle={{ textDecoration: 'underline' }}>Home</NavLink></li>
+                            <li><NavLink to="/" exact activeStyle={{ textDecoration: 'underline' }}>Posts</NavLink></li>
                             <li><NavLink to={newPostRoute}>New Post</NavLink></li>
                         </ul>
                     </nav>
@@ -39,11 +39,11 @@ class Blog extends Component {
                 * is useful becuase otherwise here /new-post would render /new-post route and /:id
                 * route because the router could think new-post is an id. If we change the order of /new-post
                 * and /:id then we will never be able to reach the /new-post route.
-                */}
+            */}
                 <Switch>
-                    <Route path="/" exact render={() => <Posts/>}/>
                     <Route path="/new-post" exact component={NewPost}/>
-                    <Route path="/:id" exact component={FullPost}/>
+                    <Route path="/" render={() => <Posts/>}/>
+                    {/* <Route path="/:id" exact component={FullPost}/> */}
                 </Switch>
             </div>
         );

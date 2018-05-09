@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import instance from '../../axios';
 import Post from '../../components/Post/Post';
-import { withRouter } from 'react-router-dom';
+import FullPost from '../FullPost/FullPost';
+import { Route, withRouter } from 'react-router-dom';
 import './Posts.css';
 
 class Posts extends Component {
@@ -21,7 +22,6 @@ class Posts extends Component {
       })
       .catch(err => {
         console.log(err);
-        // this.setState({ error: true })
       });
   }
 
@@ -40,9 +40,16 @@ class Posts extends Component {
         );
     }
     return (
-      <section className="Posts">
-        {posts}
-      </section>
+      <div>
+        <section className="Posts">
+          {posts}
+        </section>
+        {/* To make dynamic nested route we can use this.props.match.url to get current route
+            and append out nested route to end of it.
+        <Route path={this.props.match.url + '/:id'} exact component={FullPost}/>
+         */}
+        <Route path="/:id" exact component={FullPost}/>
+      </div>
     )
   }
 }
