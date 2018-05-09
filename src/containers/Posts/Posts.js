@@ -34,7 +34,8 @@ class Posts extends Component {
     let posts = <p style={{ textAlign: 'center' }}>Something went wrong</p>
     if (!this.state.error) {
       posts = this.state.posts.map(
-        post => <Post title={post.title}
+        (post, i) => <Post title={post.title}
+          key={i}
           author={post.author}
           onClicked={() => this.postSelected(post.id)} />
         );
