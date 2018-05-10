@@ -13,6 +13,10 @@ class NewPost extends Component {
     }
 
     componentDidMount() {
+        {/*
+        * Can authenticate a route in componentDidMount and react-router-dom as so
+        * if unauth => this.props.history.replace('/');
+        */}
         console.log(this.props);
     }
 

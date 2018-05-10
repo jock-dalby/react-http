@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import Posts from '../Posts/Posts';
 import NewPost from '../NewPost/NewPost';
 import FullPost from '../FullPost/FullPost';
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
+import { Link, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import './Blog.css';
 
 class Blog extends Component {
+
+    state = {
+        auth: false
+    }
+
+    loginHandler = () => {
+        this.setState({auth: !this.state.auth});
+    }
 
     render () {
         const newPostRoute = {
@@ -28,8 +36,9 @@ class Blog extends Component {
                                 activeClassName prop. There is also the activeStyle prop for passing in inline styles for
                                 active routers e.g. activeStyle={{ color: 'pink' }}
                             */}
+                            <li><a onClick={this.loginHandler}>{this.state.auth ? 'Logout' : 'Login'}</a></li>
                             <li><NavLink to="/posts" exact activeStyle={{ textDecoration: 'underline' }}>Posts</NavLink></li>
-                            <li><NavLink to={newPostRoute}>New Post</NavLink></li>
+                            {this.state.auth ? <li><NavLink to={newPostRoute}>New Post</NavLink></li> : null }
                         </ul>
                     </nav>
                 </header>
@@ -41,7 +50,7 @@ class Blog extends Component {
                 * and /:id then we will never be able to reach the /new-post route.
             */}
                 <Switch>
-                    <Route path="/new-post" exact component={NewPost}/>
+                    {this.state.auth ? <Route path="/new-post" exact component={NewPost}/> : null}
                     <Route path="/posts" render={() => <Posts/>}/>
                     {/* When using Redirect, cannot define a from attribute if outside of a switch component*/}
                     <Redirect from ="/" to="/posts" />
