@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Posts from '../Posts/Posts';
 import NewPost from '../NewPost/NewPost';
 import FullPost from '../FullPost/FullPost';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import './Blog.css';
 
 class Blog extends Component {
@@ -28,7 +28,7 @@ class Blog extends Component {
                                 activeClassName prop. There is also the activeStyle prop for passing in inline styles for
                                 active routers e.g. activeStyle={{ color: 'pink' }}
                             */}
-                            <li><NavLink to="/" exact activeStyle={{ textDecoration: 'underline' }}>Posts</NavLink></li>
+                            <li><NavLink to="/posts" exact activeStyle={{ textDecoration: 'underline' }}>Posts</NavLink></li>
                             <li><NavLink to={newPostRoute}>New Post</NavLink></li>
                         </ul>
                     </nav>
@@ -42,7 +42,8 @@ class Blog extends Component {
             */}
                 <Switch>
                     <Route path="/new-post" exact component={NewPost}/>
-                    <Route path="/" render={() => <Posts/>}/>
+                    <Route path="/posts" render={() => <Posts/>}/>
+                    <Redirect from ="/" to="/posts" />
                     {/* <Route path="/:id" exact component={FullPost}/> */}
                 </Switch>
             </div>

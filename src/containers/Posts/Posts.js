@@ -26,7 +26,7 @@ class Posts extends Component {
   }
 
   postSelected(id) {
-    this.props.history.push({pathname: '/' + id});
+    this.props.history.push({pathname: '/posts/' + id});
   }
 
   render() {
@@ -49,7 +49,7 @@ class Posts extends Component {
             and append out nested route to end of it.
         <Route path={this.props.match.url + '/:id'} exact component={FullPost}/>
          */}
-        <Route path="/:id" exact component={FullPost}/>
+        <Route path="/posts/:id" exact component={FullPost}/>
       </div>
     )
   }
