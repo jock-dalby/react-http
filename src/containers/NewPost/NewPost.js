@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 import './NewPost.css';
 
@@ -7,7 +8,8 @@ class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Max'
+        author: 'Max',
+        submitted: false
     }
 
     componentDidMount() {
@@ -21,12 +23,15 @@ class NewPost extends Component {
             author: this.state.author
         }
         axios.post('/posts', post)
-            .then(res => console.log('Post item:', res));
+            .then(res => this.setState({submitted: true}));
     }
 
     render () {
         return (
             <div className="NewPost">
+                {/* When using Redirect, cannot define a from attribute if outside of a switch component*/}
+                {/* Whenever component is rendered, the router will redirect*/}
+                {this.state.submitted ? <Redirect to="/posts" /> : null}
                 <h1>Add a Post</h1>
                 <label>Title</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />

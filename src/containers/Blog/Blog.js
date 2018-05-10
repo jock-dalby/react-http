@@ -43,8 +43,8 @@ class Blog extends Component {
                 <Switch>
                     <Route path="/new-post" exact component={NewPost}/>
                     <Route path="/posts" render={() => <Posts/>}/>
+                    {/* When using Redirect, cannot define a from attribute if outside of a switch component*/}
                     <Redirect from ="/" to="/posts" />
-                    {/* <Route path="/:id" exact component={FullPost}/> */}
                 </Switch>
             </div>
         );
