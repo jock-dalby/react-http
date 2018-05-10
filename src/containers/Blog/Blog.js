@@ -52,8 +52,10 @@ class Blog extends Component {
                 <Switch>
                     {this.state.auth ? <Route path="/new-post" exact component={NewPost}/> : null}
                     <Route path="/posts" render={() => <Posts/>}/>
+                    {/* Below route catches all unknown routes, cannot be used with '/' because this also catches all routes*/}
+                    <Route render={() => <h1>Not found</h1>} />
                     {/* When using Redirect, cannot define a from attribute if outside of a switch component*/}
-                    <Redirect from ="/" to="/posts" />
+                    {/* <Redirect from ="/" to="/posts" /> */}
                 </Switch>
             </div>
         );
