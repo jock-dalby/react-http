@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 import './FullPost.css';
@@ -50,4 +49,4 @@ class FullPost extends Component {
     }
 }
 
-export default withRouter(FullPost);
+export default FullPost;

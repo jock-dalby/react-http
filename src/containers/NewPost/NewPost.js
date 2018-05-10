@@ -23,7 +23,13 @@ class NewPost extends Component {
             author: this.state.author
         }
         axios.post('/posts', post)
-            .then(res => this.setState({submitted: true}));
+            .then(res => {
+                // Another way of redirecting not using <Redirect> component
+                // 'push' pushes a new page to top of history of pages
+                // can also use 'replace' to replace current entry on history
+                this.props.history.push('/posts');
+                // this.setState({submitted: true})
+            });
     }
 
     render () {
