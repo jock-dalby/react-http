@@ -8,7 +8,7 @@ const asyncComponent = (importComponent) => {
     // When this hoc is rendered execute the function passed into it.
     // The function passed in is an import which returns a default.
     // We assign that default component to state and then render it out in the render method.
-    // This hoc lazy loads any components whose import statements are passed into it.
+    // This hoc asynchronously lazy loads any components whose import statements are passed into it.
     // Genius!
     componentDidMount() {
       importComponent()
