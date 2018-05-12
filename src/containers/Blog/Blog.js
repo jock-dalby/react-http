@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import Posts from '../Posts/Posts';
-import NewPost from '../NewPost/NewPost';
+// import NewPost from '../NewPost/NewPost';
 import FullPost from '../FullPost/FullPost';
+import asyncComponent from '../../hoc/asyncComponent';
 import { Link, Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import './Blog.css';
+
+const AsyncNewPost = asyncComponent((() => {
+    // NewPost is only imported when this function is executed by the asyncComponent, when AsyncNewPost is rendered.
+    // Thus lazy loading the newPost component
+    return import('../NewPost/NewPost');
+}));
 
 class Blog extends Component {
 
@@ -50,7 +57,7 @@ class Blog extends Component {
                 * and /:id then we will never be able to reach the /new-post route.
             */}
                 <Switch>
-                    {this.state.auth ? <Route path="/new-post" exact component={NewPost}/> : null}
+                    {this.state.auth ? <Route path="/new-post" exact component={AsyncNewPost}/> : null}
                     <Route path="/posts" render={() => <Posts/>}/>
                     {/* Below route catches all unknown routes, cannot be used with '/' because this also catches all routes*/}
                     <Route render={() => <h1>Not found</h1>} />
